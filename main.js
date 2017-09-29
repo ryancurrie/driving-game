@@ -49,10 +49,13 @@ function renderCar() {
 }
 
 const $game = document.querySelector('#game')
+$game.appendChild(renderCar())
+
+const $playerCar = document.querySelector('#player-car')
+const $carStyle = $playerCar.style
+
 const player = new Car('n', 20, [0, 0])
 let keyDown = false
-
-$game.appendChild(renderCar())
 
 window.addEventListener('keydown', (e) => {
   if (keyDown) return
@@ -66,5 +69,26 @@ window.addEventListener('keyup', (e) => {
   keyDown = false
   if (e.keyCode === 32) {
     Car.stop(player)
+  }
+})
+
+window.addEventListener('keydown', (e) => {
+  switch (e.keyCode) {
+    case 37:
+      player.turn('e')
+      $carStyle.transform = 'rotate(-90deg)'
+      break
+    case 39:
+      player.turn('w')
+      $carStyle.transform = 'rotate(90deg)'
+      break
+    case 38:
+      player.turn('n')
+      $carStyle.transform = 'rotate(0)'
+      break
+    case 40:
+      player.turn('s')
+      $carStyle.transform = 'rotate(180deg)'
+      break
   }
 })
