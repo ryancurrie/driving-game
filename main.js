@@ -1,5 +1,3 @@
-const $game = document.querySelector('#game')
-
 class Car {
   constructor(direction, speed, location) {
     this.direction = direction
@@ -31,9 +29,15 @@ class Car {
     }
   }
   static start(car) {
-    setInterval(() => {
+    car.timerId = setInterval(() => {
       car.move()
+      console.log(car.location)
     }, 200)
+  }
+  static stop(car) {
+    if (car.timerId) {
+      clearInterval(car.timerId)
+    }
   }
 }
 
@@ -44,4 +48,23 @@ function renderCar() {
   return $car
 }
 
+const $game = document.querySelector('#game')
+const player = new Car('n', 20, [0, 0])
+let keyDown = false
+
 $game.appendChild(renderCar())
+
+window.addEventListener('keydown', (e) => {
+  if (keyDown) return
+  keyDown = true
+  if (e.keyCode === 32) {
+    Car.start(player)
+  }
+})
+
+window.addEventListener('keyup', (e) => {
+  keyDown = false
+  if (e.keyCode === 32) {
+    Car.stop(player)
+  }
+})
