@@ -5,16 +5,17 @@
 body {
   font-family: Helvetica;
 }
+
 #wrapper {
   margin: 8em auto;
-  width: 70%
+  width: 70%;
 }
 
 #game {
   position: relative;
   width: 1536px;
   height: 1408px;
-  background: url(grass.png) repeat
+  background: url(grass.png) repeat;
 }
 
 #track {
