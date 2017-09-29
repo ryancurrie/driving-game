@@ -41,20 +41,30 @@ class Car {
   }
 }
 
-function renderCar() {
+function renderCar(car) {
   const $car = document.createElement('img')
   $car.setAttribute('src', 'red-car.png')
   $car.setAttribute('id', 'player-car')
+  $car.style.left = car.location[0] + 'px'
+  $car.style.top = car.location[1] + 'px'
   return $car
 }
 
+function renderTrack() {
+  const $track = document.createElement('img')
+  $track.setAttribute('src', 'track.png')
+  $track.setAttribute('id', 'track')
+  return $track
+}
+
 const $game = document.querySelector('#game')
-$game.appendChild(renderCar())
+const player = new Car('n', 20, [189.5, 1152])
+$game.appendChild(renderCar(player))
+$game.appendChild(renderTrack())
 
 const $playerCar = document.querySelector('#player-car')
 const $carStyle = $playerCar.style
 
-const player = new Car('n', 20, [0, 0])
 let keyDown = false
 
 window.addEventListener('keydown', (e) => {

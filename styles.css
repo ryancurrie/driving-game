@@ -1,7 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Helvetica;
 }
+#wrapper {
+  margin: 8em auto;
+  width: 70%
+}
+
+#game {
+  position: relative;
+  width: 1536px;
+  height: 1408px;
+  background: url(grass.png) repeat
+}
+
+#track {
+  position: absolute;
+  margin: 128px;
+}
 
 #player-car {
+  position: absolute;
+  z-index: 3000;
   height: 75px;
 }
