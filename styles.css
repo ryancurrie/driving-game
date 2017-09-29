@@ -8,7 +8,11 @@ body {
 
 #wrapper {
   margin: 0 auto;
-  width: 70%;
+  width: 796px;
+}
+
+#header {
+  text-align: center;
 }
 
 #game {

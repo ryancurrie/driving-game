@@ -31,7 +31,6 @@ class Car {
   static start(car) {
     car.timerGo = setInterval(() => {
       car.move()
-      console.log(car.location)
     }, 16)
   }
   static stop(car) {
@@ -40,18 +39,12 @@ class Car {
     }
   }
   static boost(car) {
-    car.timerBoost = setInterval(() => {
-      car.accelerate(1)
-      car.boosted = true
-      console.log(car.speed)
-    }, 16)
+    car.accelerate(5)
+    car.boosted = true
   }
   static noBoost(car) {
-    if (car.timerBoost) {
-      car.boosted = false
-      car.speed = 5
-      clearInterval(car.timerBoost)
-    }
+    car.boosted = false
+    car.speed = 5
   }
 }
 
@@ -92,12 +85,24 @@ function renderTrack() {
 }
 
 const $game = document.querySelector('#game')
-const player = new Car('n', 5, [79.5, 592])
+const player = new Car('n', 5, [79.5, 598])
 $game.appendChild(renderCar(player))
 $game.appendChild(renderTrack())
 
 let keyDown = false
-let boost = false
+
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode === 66) {
+    console.log('boost')
+    Car.boost(player)
+  }
+})
+
+window.addEventListener('keyup', (e) => {
+  if (e.keyCode === 66) {
+    Car.noBoost(player)
+  }
+})
 
 window.addEventListener('keydown', (e) => {
   if (keyDown) return
@@ -128,21 +133,6 @@ window.addEventListener('keydown', (e) => {
     case 40:
       player.turn('s')
       break
-  }
-})
-
-window.addEventListener('keydown', (e) => {
-  if (boost) return
-  boost = true
-  if (e.keyCode === 66) {
-    Car.boost(player)
-  }
-})
-
-window.addEventListener('keyup', (e) => {
-  boost = false
-  if (e.keyCode === 66) {
-    Car.noBoost(player)
   }
 })
 
