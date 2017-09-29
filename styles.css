@@ -7,24 +7,25 @@ body {
 }
 
 #wrapper {
-  margin: 8em auto;
+  margin: 0 auto;
   width: 70%;
 }
 
 #game {
   position: relative;
-  width: 1536px;
-  height: 1408px;
+  width: 796px;
+  height: 704px;
   background: url(grass.png) repeat;
 }
 
 #track {
   position: absolute;
-  margin: 128px;
+  margin: 16px;
+  width: 95%;
 }
 
 #player-car {
   position: absolute;
   z-index: 3000;
-  height: 75px;
+  height: 50px;
 }
